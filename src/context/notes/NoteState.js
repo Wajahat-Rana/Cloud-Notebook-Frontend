@@ -3,34 +3,7 @@ import NoteContext from './NoteContext'
 
 const NoteState = (props) => {
     const host = "http://localhost:3000"
-    const notesInitial = [{
-        "title": "Note#1",
-        "description": "Hey There how Are You?",
-        "_id": "1"
-    },
-    {
-        "title": "Note#2",
-        "description": "Hope You Are Doing Well.",
-        "_id": "2"
-    }, {
-        "title": "Note#3",
-        "description": "Hey There how Are You?",
-        "_id": "3"
-    },
-    {
-        "title": "Note#4",
-        "description": "Hope You Are Doing Well.",
-        "_id": "4"
-    }, {
-        "title": "Note#5",
-        "description": "Hey There how Are You?",
-        "_id": "5"
-    },
-    {
-        "title": "Note#6",
-        "description": "Hope You Are Doing Well.",
-        "_id": "6"
-    }]
+    const notesInitial = []
     const deleteNote = async (id) => {
         try {
             // Send DELETE request to backend API
@@ -53,29 +26,77 @@ const NoteState = (props) => {
         }
     }
 
-    const updateNote = async (id, title, description, tag) => {
+    // const editNote = async (id, title, description, tag) => {
 
-        //API Call
-        const response = await fetch(`${host}/api/notes/updatenote/${id}`, {
-            method: "PUT",
-            headers: {
-                "Content-Type": "application/json",
-                "auth-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjViMjI1Njc4NzI5YmIxNGM2OTE3ZjE5In0sImlhdCI6MTcwNjQyOTc4Nn0.b2i8UQTuq-MMVzZO4cWf1DzKq-oEKQ9TLvshmDOjmKk"
+    //     //API Call
+    //     const response = await fetch(`${host}/api/notes/updatenote/${id}`, {
+    //         method: "PUT",
+    //         headers: {
+    //             "Content-Type": "application/json",
+    //             "auth-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjViMjI1Njc4NzI5YmIxNGM2OTE3ZjE5In0sImlhdCI6MTcwNjQyOTc4Nn0.b2i8UQTuq-MMVzZO4cWf1DzKq-oEKQ9TLvshmDOjmKk"
+    //         }
+    //     });
+
+    //     let newNotes = JSON.parse(JSON.stringify(notes))
+    //     for (let index = 0; index < newNotes.length; index++) {
+    //         const element = newNotes[index];
+    //         if (element._id === id) {
+    //             newNotes[index].title = title;
+    //             newNotes[index].description = description;
+    //             newNotes[index].tag = tag;
+    //         }
+    //         break;
+
+    //     }
+    //     setNotes(newNotes)
+
+    // }
+
+
+
+
+    const editNote = async (id, title, description, tag) => {
+        // Prepare the updated note object
+        const updatedNote = {
+            title: title,
+            description: description,
+            tag: tag
+        };
+    
+        try {
+            // Make the API call to update the note
+            const response = await fetch(`${host}/api/notes/updatenote/${id}`, {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json",
+                    "auth-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjViMjI1Njc4NzI5YmIxNGM2OTE3ZjE5In0sImlhdCI6MTcwNjQyOTc4Nn0.b2i8UQTuq-MMVzZO4cWf1DzKq-oEKQ9TLvshmDOjmKk" // Update with your actual auth token
+                },
+                body: JSON.stringify(updatedNote) // Include the updated note data in the request body
+            });
+    
+            // Check if the request was successful
+            if (response.ok) {
+                // If successful, update the notes in the state
+                const updatedNotes = notes.map(note => {
+                    if (note._id === id) {
+                        return { ...note, ...updatedNote };
+                    }
+                    return note;
+                });
+    
+                setNotes(updatedNotes);
+            } else {
+                // Handle the case when the request fails
+                console.error("Failed to update note");
             }
-        });
-
-
-        for (let index = 0; index < notes.length; index++) {
-            const element = notes[index];
-            if (element._id === id) {
-                element.title = title;
-                element.description = description;
-                element.tag = tag;
-            }
-
+        } catch (error) {
+            console.error("Error updating note:", error);
         }
+    };
 
-    }
+    
+
+
     const fetchNotes = async () => {
         const response = await fetch(`${host}/api/notes/getnotes`, {
             method: "GET",
@@ -105,7 +126,7 @@ const NoteState = (props) => {
     }
     const [notes, setNotes] = useState(notesInitial);
     return (
-        <NoteContext.Provider value={{ notes, setNotes, addNote, deleteNote, updateNote, fetchNotes }}>
+        <NoteContext.Provider value={{ notes, setNotes, addNote, deleteNote, editNote, fetchNotes }}>
             {props.children}
         </NoteContext.Provider>
     )
