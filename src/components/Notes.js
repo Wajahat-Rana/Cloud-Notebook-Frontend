@@ -71,6 +71,7 @@ const Notes = () => {
             </div>
             <h1 style={{ fontSize: "30px" }}>Your Notes</h1>
             <div className="row container">{
+                
                 notes.map((note) => {
                     return <NoteItem note={note} updateNote={updateNote} key={note.title} />
                 })
