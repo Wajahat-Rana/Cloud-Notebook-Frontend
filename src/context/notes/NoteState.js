@@ -11,7 +11,7 @@ const NoteState = (props) => {
                 method: "DELETE",
                 headers: {
                     "Content-Type": "application/json",
-                    "auth-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjViMjI1Njc4NzI5YmIxNGM2OTE3ZjE5In0sImlhdCI6MTcwNjQyOTc4Nn0.b2i8UQTuq-MMVzZO4cWf1DzKq-oEKQ9TLvshmDOjmKk"
+                    "auth-token": localStorage.getItem('token')
                 }
             });
 
@@ -33,7 +33,7 @@ const NoteState = (props) => {
     //         method: "PUT",
     //         headers: {
     //             "Content-Type": "application/json",
-    //             "auth-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjViMjI1Njc4NzI5YmIxNGM2OTE3ZjE5In0sImlhdCI6MTcwNjQyOTc4Nn0.b2i8UQTuq-MMVzZO4cWf1DzKq-oEKQ9TLvshmDOjmKk"
+    //             "auth-token": localStorage.getItem('token')
     //         }
     //     });
 
@@ -69,7 +69,7 @@ const NoteState = (props) => {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",
-                    "auth-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjViMjI1Njc4NzI5YmIxNGM2OTE3ZjE5In0sImlhdCI6MTcwNjQyOTc4Nn0.b2i8UQTuq-MMVzZO4cWf1DzKq-oEKQ9TLvshmDOjmKk" // Update with your actual auth token
+                    "auth-token": localStorage.getItem('token') // Update with your actual auth token
                 },
                 body: JSON.stringify(updatedNote) // Include the updated note data in the request body
             });
@@ -102,7 +102,7 @@ const NoteState = (props) => {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
-                "auth-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjViMjI1Njc4NzI5YmIxNGM2OTE3ZjE5In0sImlhdCI6MTcwNjQyOTc4Nn0.b2i8UQTuq-MMVzZO4cWf1DzKq-oEKQ9TLvshmDOjmKk"
+                "auth-token": localStorage.getItem('token')
             }
         });
         const json = await response.json();
@@ -114,7 +114,7 @@ const NoteState = (props) => {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
-                "auth-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjViMjI1Njc4NzI5YmIxNGM2OTE3ZjE5In0sImlhdCI6MTcwNjQyOTc4Nn0.b2i8UQTuq-MMVzZO4cWf1DzKq-oEKQ9TLvshmDOjmKk"
+                "auth-token": localStorage.getItem('token')
             },
             body: JSON.stringify({ title, description, tag })
         });

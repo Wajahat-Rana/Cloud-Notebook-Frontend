@@ -37,7 +37,7 @@ const onChange = (e) => {
 
       <form onSubmit={handleSignup}>
       <div className="container d-flex justify-content-center align-items-center mt-5">
-    <div className="card p-4" style={{ width: '60%' }}>
+    <div className="card p-4" style={{ width: '80%' }}>
     <h2 className="text-center mb-4">Sign Up</h2>
         <div className="mb-3">
           <label htmlFor="name" className="form-label">Name:</label>

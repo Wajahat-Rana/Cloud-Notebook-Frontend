@@ -14,7 +14,7 @@ const AddNote = () => {
         setNote({...note,[e.target.name]:e.target.value})
     }
   return (
-    <div><h1 style={{ fontSize: "30px" }}>Add A Note</h1>
+    <div ><h1 style={{ fontSize: "30px" }}>Add A Note</h1>
     <form className='my-3'>
         <div className="mb-3 col-md-8">
             <label htmlFor="title" className="form-label">Title</label>

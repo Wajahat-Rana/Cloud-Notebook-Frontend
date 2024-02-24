@@ -32,7 +32,7 @@ const Login = (props) => {
   return (
     <form onSubmit={handleLogin}>
       <div className="container d-flex justify-content-center align-items-center mt-5">
-        <div className="card p-4" style={{ width: '60vw' }}>
+        <div className="card p-4" style={{ width: '80vw' }}>
           <h2 className="text-center mb-4">Login</h2>
           <div className="mb-3">
             <label htmlFor="email" className="form-label">Email address</label>
