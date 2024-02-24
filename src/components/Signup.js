@@ -21,7 +21,7 @@ const Signup = (props) => {
     if(json.success){
       props.showAlert("Account Created.","success")
 
-      localStorage.setItem('token',json.authtoken)
+      localStorage.setItem('token',json.authToken)
         navigate('/login')
     }else{
       const message = json.error;

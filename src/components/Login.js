@@ -16,7 +16,7 @@ const Login = (props) => {
         console.log(json)
         if(json.success){
           props.showAlert("Logged In.","success")
-      localStorage.setItem('token',json.authtoken)
+      localStorage.setItem('token',json.authToken)
             navigate('/')
         }else{
           props.showAlert(json.error,"danger")
